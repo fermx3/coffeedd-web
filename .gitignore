@@ -22,3 +22,8 @@ streamlit_app_temp_files/
 # Operating System
 .DS_Store
 Thumbs.db
+
+# Sensitive files (e.g., environment variables)
+.env
+.env.local
+.env.production
