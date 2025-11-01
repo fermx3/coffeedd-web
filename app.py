@@ -57,7 +57,7 @@ col1, col2 = st.columns([1, 1])
 with col1:
     if uploaded:
         img_pil = Image.open(uploaded).convert("RGB")
-        st.image(img_pil, caption="Imagen cargada", use_column_width=True)
+        st.image(img_pil, caption="Imagen cargada", use_container_width=True)
     else:
         st.info("Sube una imagen para habilitar el botón de diagnóstico.")
 
@@ -103,7 +103,7 @@ with col2:
                 try:
                     out_bytes = base64.b64decode(data["image_base64"])
                     out_img = Image.open(io.BytesIO(out_bytes))
-                    st.image(out_img, caption="Imagen procesada (API)", use_column_width=True)
+                    st.image(out_img, caption="Imagen procesada (API)", use_container_width=True)
                 except Exception:
                     st.caption("No se pudo decodificar la imagen devuelta por la API.")
 
