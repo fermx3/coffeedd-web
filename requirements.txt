@@ -3,3 +3,7 @@ folium
 streamlit-folium
 requests
 Pillow
+uvicorn
+fastapi
+pydantic
+python-multipart
