@@ -25,11 +25,13 @@ SUPPORT_EMAIL = "soporte@coffeecare.example"  # Cambia por tu correo real
 # =========================
 # Configuración de la API
 # =========================
-API_BASE    = os.getenv("API_URL", "http://localhost:8000").rstrip("/")
+API_BASE    = os.getenv(
+    "API_URL", "https://api-coffeedd-604795623761.europe-southwest1.run.app"
+    ).rstrip("/")
 PREDICT_URL = f"{API_BASE}/predict"
 HEALTH_URL  = f"{API_BASE}/health"
 
-def check_health(timeout=5):
+def check_health(timeout=1000):
     """
     Consulta /health.
     - Si responde 200 y status='healthy' & model_loaded=True -> (True, data, 'health')
@@ -87,7 +89,8 @@ with col_h2:
         st.code(health_payload, language="text")
 
 # Botón para reintentar chequeo
-st.button("Reintentar chequeo", on_click=lambda: st.rerun())
+if st.button("Reintentar chequeo"):
+    st.rerun()
 
 # ---- Carga de imagen con validación de tamaño
 uploaded = st.file_uploader("Imagen de hoja (JPG/PNG)", type=["jpg", "jpeg", "png"])
@@ -144,13 +147,13 @@ col1, col2 = st.columns([1, 1])
 with col1:
     if uploaded:
         img_pil = Image.open(uploaded).convert("RGB")
-        st.image(img_pil, caption="Imagen cargada", use_container_width=True)
+        st.image(img_pil, caption="Imagen cargada", width="stretch")
     else:
         st.info("Sube una imagen para habilitar el botón de diagnóstico.")
 
 with col2:
     st.markdown("### Diagnóstico")
-    run = st.button("Analizar imagen", use_container_width=True, type="primary")
+    run = st.button("Analizar imagen", width="stretch", type="primary")
 
     if run:
         # Validaciones previas
@@ -227,7 +230,7 @@ with col2:
                 try:
                     out_bytes = base64.b64decode(data["image_base64"])
                     out_img = Image.open(io.BytesIO(out_bytes))
-                    st.image(out_img, caption="Imagen procesada (API)", use_container_width=True)
+                    st.image(out_img, caption="Imagen procesada (API)", width="stretch")
                 except Exception:
                     st.caption("No se pudo decodificar la imagen devuelta por la API.")
 
