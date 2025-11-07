@@ -89,8 +89,8 @@ with col_h2:
         st.code(health_payload, language="text")
 
 # Botón para reintentar chequeo
-if st.button("Reintentar chequeo"):
-    st.rerun()
+# if st.button("Reintentar chequeo"):
+#    st.rerun()
 
 # ---- Carga de imagen con validación de tamaño
 uploaded = st.file_uploader("Imagen de hoja (JPG/PNG)", type=["jpg", "jpeg", "png"])
@@ -171,7 +171,7 @@ with col2:
         try:
             # Paso 1: preparando
             progress.progress(20)
-            time.sleep(0.05)
+            # time.sleep(0.05)
 
             # Paso 2: enviando / esperando respuesta
             progress.progress(55)
@@ -182,7 +182,7 @@ with col2:
 
             # Paso 3: parseando / mostrando
             progress.progress(85)
-            time.sleep(0.05)
+            # time.sleep(0.05)
 
         except Exception as e:
             progress.empty()
@@ -190,7 +190,7 @@ with col2:
             st.stop()
         finally:
             progress.progress(100)
-            time.sleep(0.05)
+            # time.sleep(0.05)
             progress.empty()
 
         # Esperado: {"class_name": "...", "probability": float, "raw": [...], "image_base64": "opcional"}
