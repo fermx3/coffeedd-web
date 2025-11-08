@@ -25,7 +25,7 @@ SUPPORT_EMAIL = "soporte@coffeecare.example"  # Cambia por tu correo real
 # =========================
 # Configuración de la API
 # =========================
-API_BASE    = os.getenv("API_URL", "http://localhost:8000").rstrip("/")
+API_BASE    = os.getenv("API_URL", "https://coffeedd-api-696723121967.europe-southwest1.run.app").rstrip("/")
 PREDICT_URL = f"{API_BASE}/predict"
 HEALTH_URL  = f"{API_BASE}/health"
 
